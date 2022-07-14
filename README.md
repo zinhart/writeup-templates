@@ -7,15 +7,20 @@ As such it is update when new information/techniques are learned.
 A secondary goal of this template is to focus on ***what to look for not*** first and ***how to look for*** second.  
 By focusing on ***what*** instead of ***how***, we can check off low hanging fruit by thinking in terms of the OS flavor and not get overwhelmed with all the various commands or mindlessly running them.    
 For example, How do we enum users?  
-On windows we might:  
+### On Windows
+All users? 
 ```powershell
 net user
 ```
-On linux we might be interested in users with login shells:  
+Administrators?
+```powershell
+net localgroup administrators
+```
+### On Linux
+Users with login shells?  
 ```bash
 cat /etc/passwd | cut -d ':' -f 1,7 | grep "zsh\|sh\|bash"
 ```
-Another way:
 ```bash
 cat /etc/passwd | awk -F ":" '{print $1 ":" $7}' | grep "zsh\|sh\|bash"
 ```
