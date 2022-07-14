@@ -40,16 +40,7 @@ Create your working folders.
 
 With your working folders created you can create an obsidian vault at the root of this project and get to hacking!
 
-# Template Windows
-T0 D0
-# Template Linux
-T0 D0
-# Index
-![test](repo-screenshots/index-p1.png)
-![test](repo-screenshots/index-p2.png)
-![](repo-screenshots/index-p3.png)
-![](repo-screenshots/index-p4.png)
-![](repo-screenshots/index-p5.png)
-T0 D0
+## How does it look?
+Screenshots can be found on my [blog](http://zinhart.io)
 
 

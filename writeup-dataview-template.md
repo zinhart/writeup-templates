@@ -96,11 +96,10 @@ dv.header(1, title);
 5. [[#PRIVILEGE ESCALATION]]
 6. [[#POST EXPLOITATION]]
 ## RECON
+### OSINT
+### ZONE TRANSFERS
 ## INFORMATION GATHERING
-### Port Scans
- If we output the nmap scan in xml we can use searchsploit --nmap to check all service versions against exploitdb.
 #### Ping Sweeps
-#### Vuln Scans
 ```dataviewjs
 let pg = dv.current()
 if(pg.os === 'windows' && pg.show_local_commands === 'yes')
@@ -112,14 +111,102 @@ if(pg.os === 'windows' && pg.show_local_commands === 'yes')
 }
 ```
 
+```dataviewjs
+let pg = dv.current()
+if(pg.os === 'windows' && pg.show_local_commands === 'yes')
+{
+	let heading=`NO Powershell Ping Sweep Class C`;
+	let cmd=`<pre><code>for /L %i in (1,1,255) do @ping -n 1 -w 200 192.168.1.%i > nul && echo 192.168.1.%i is up.</code></pre>`;
+	dv.header(5, heading)
+	dv.paragraph(cmd);
+}
+```
+
+```dataviewjs
+let pg = dv.current()
+if(pg.os === 'linux' && pg.show_local_commands === 'yes')
+{
+	let heading=`Linux Ping Sweep Class C`;
+	let cmd=`<pre><code>for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done</code></pre>`;
+	dv.header(5, heading)
+	dv.paragraph(cmd);
+}
+```
+### Vuln Scans
+### Port Scans
+ If we output the nmap scan in xml we can use searchsploit --nmap to check all service versions against exploitdb.
+
 #### TCP
 ##### All Open Ports
- 
+```dataviewjs
+let pg = dv.current();
+if(pg.show_local_commands === 'yes')
+{
+	let heading=`Open Ports => '$ip-fulltcp.scan'`;
+	let cmd=`<pre><code>sudo nmap -sS -p- $ip -oN $ip-fulltcp.scan -T4 </code></pre>`;
+	dv.header(5, heading);
+	dv.paragraph(cmd);
+}
+```
 ##### All Ports Service scan
- 
+```dataviewjs
+let pg = dv.current();
+if(pg.show_local_commands === 'yes')
+{
+	let heading=`Extract Open Ports from '$ip-fulltcp.scan'`;
+	let cmd=`<pre><code>cat $ip-fulltcp.scan | grep open | awk -F "/" '{ORS=","} {print $1}' | sed 's/.$//' </code></pre>`;
+	dv.header(5, heading);
+	dv.paragraph(cmd);
+}
+```
+
+```dataviewjs
+let pg = dv.current();
+if(pg.show_local_commands === 'yes')
+{
+	let heading=`Run a Service scan on all open ports`;
+	let cmd=`<pre><code>sudo nmap -sS -sC -sV -oN $ip-fulltcp-service.scan -p  </code></pre>`;
+	dv.header(5, heading);
+	dv.paragraph(cmd);
+}
+```
+
 #### UDP
 ##### Top 1000 Open Ports
+```dataviewjs
+let pg = dv.current();
+if(pg.show_local_commands === 'yes')
+{
+	let heading=`Open Ports => '$ip-udp1k.scan'`;
+	let cmd=`<pre><code>sudo nmap -sU $ip -oN $ip-udp1k.scan -T4 </code></pre>`;
+	dv.header(5, heading);
+	dv.paragraph(cmd);
+}
+```
 
+##### Top 1000 Open Ports Service Scan
+```dataviewjs
+let pg = dv.current();
+if(pg.show_local_commands === 'yes')
+{
+	let heading=`Extract Open Ports from '$ip-udp1k.scan'`;
+	let cmd=`<pre><code>cat $ip-udp1k.scan | grep open | awk -F "/" '{ORS=","} {print $1}' | sed 's/.$//' </code></pre>`;
+	dv.header(5, heading);
+	dv.paragraph(cmd);
+}
+```
+
+```dataviewjs
+let pg = dv.current();
+if(pg.show_local_commands === 'yes')
+{
+	let heading=`Run a Service scan on all open ports`;
+	let cmd=`<pre><code>sudo nmap -sU -sC -sV -oN $ip-udp1k-service.scan -p  </code></pre>`;
+	dv.header(5, heading);
+	dv.paragraph(cmd);
+}
+
+```
 ### Service Enumeration
 ```dataviewjs
 let pg = dv.current();
