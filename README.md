@@ -1,5 +1,8 @@
-# report-templates
-Templates for documenting ctf's or network based pentests
+# REPORT TEMPLATES
+Templates for documenting ctf's or network based pentests.
+
+## Foreword
+The writeup-dataview-template.md is a living document.
 
 ## Usage
 Create your working folders.
