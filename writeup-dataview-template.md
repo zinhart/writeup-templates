@@ -165,7 +165,7 @@ let pg = dv.current();
 if(pg.show_local_commands === 'yes')
 {
 	let heading=`Run a Service scan on all open ports`;
-	let cmd=`<pre><code>sudo nmap -sS -sC -sV -oN $ip-fulltcp-service.scan -p  </code></pre>`;
+	let cmd=`<pre><code>sudo nmap -sS -sC -sV $ip -oN $ip-fulltcp-service.scan -p  </code></pre>`;
 	dv.header(5, heading);
 	dv.paragraph(cmd);
 }
