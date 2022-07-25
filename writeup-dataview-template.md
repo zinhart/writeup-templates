@@ -51,11 +51,13 @@ service_enumeration_primer: > # Enumeration Helpers
  
  6. We must probe all application inputs for xss/sqli with: <pre><code>< > &#39; &#39; { } ;</code></pre>
  
- 7. If we come across a any kind of webfilter we must use an os command injection wordlist to bypass the filter.
+ 7. We can check for SSTI with: <pre><code>&#36;&#123;&#123;&#60;&#37;&#91;&#37;&#39;&#34;&#125;&#125;&#37;&#92;</code></pre>
  
- 8. We should also be aware of password reusage. If we find a password for a users ftp account it&apos;s worth it to try on rdp/ssh etc. You never know until you do.
+ 8. If we come across a any kind of webfilter we must use an os command injection wordlist to bypass the filter.
  
- 9. If nothing seems to pan out our last resort is to bruteforce users and/or passwords.
+ 9. We should also be aware of password reusage. If we find a password for a users ftp account it&apos;s worth it to try on rdp/ssh etc. You never know until you do.
+ 
+ 10. If nothing seems to pan out our last resort is to bruteforce users and/or passwords.
 privilege_escalation_primer: >
  1. Scripts/binaries thats reference other scripts/binaries that don&#39;t use full(linux) or a quoted path(windows) path. We can modify the path and create a malicious binary.
  
